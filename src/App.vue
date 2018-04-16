@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <input type="text" :placeholder="placeholder" v-model="newTodo"/>
-    <button @click="createTodo()">create</button>
-    todoList
+    <createTodo :onCreateTodo="createTodo" />
+    <todoList :todos="todos" :onRemoveTodo="removeTodo"/>
   </div>
 </template>
 
@@ -11,16 +10,15 @@ export default {
   name: 'App',
   data(){
     return{
-      placeholder:'añadir tarea',
-      newTodo:'',
+
       todos:['hola'],
     }
   },
   methods:{
-      createTodo: function(){
-        if (this.newTodo.length > 0) {
-          this.todos.push(this.newTodo);
-          this.newTodo = '';
+      createTodo: function(text){
+        if (text.length > 0) {
+          this.todos.push(text);
+
         } else {
           // alert('no hay texto')
         }
